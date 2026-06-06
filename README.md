@@ -1,6 +1,6 @@
 LIVE VERSION IS "vA3"  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-Download only this file if you don't the Source files: Exile2.builder_0-5-1_vA3_Windows.exe
+Download this for WINDOWS: Exile2.builder_0-5-1_vA3_Windows.exe
 
 This app was created while trying to help ChatGPT understand the Passive Tree through uploading the data.json file on GGG's github.
 
