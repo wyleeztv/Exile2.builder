@@ -1,0 +1,86 @@
+Exile2.builder 0-5-1 vA2 Official Release Update
+Generated: 2026-06-05
+
+This is a small data/filter update built directly from the vA official release.
+
+vA2 changes
+-----------
+- Corrected the vA1 Companion / Ally / Minion filter hierarchy.
+- Ally Damage is strict Ally-only. It does not include Minion or Companion lines.
+- Minion Damage highlights:
+  - Minion lines;
+  - Spectre / Skeleton / Raging Spirit minion-family lines;
+  - generic Ally lines;
+  - not Companion-specific lines.
+- Companion Damage highlights:
+  - Companion-specific lines;
+  - Minion-family lines;
+  - generic Ally lines.
+- Minion Attack Damage no longer inherits Companion-specific attack lines.
+- Spectres remain Minion-family wording but are not added as their own Damage Type.
+- Updated visible release labels from vA1 to vA2.
+
+Companion / Ally / Minion rules
+-------------------------------
+- Ally can support Minions and Companions when a line specifically says Ally, but the Ally Damage filter itself is Ally-only.
+- Minion builds can use Minion lines and generic Ally lines, but Companion-only buffs should not be shown under Minion Damage.
+- Companion builds can use Companion lines, Minion lines, and generic Ally lines.
+- Spectres are treated as Minion-family wording, but Spectre is not its own Damage Type at this time.
+
+Preserved vA behavior
+---------------------
+- Cache lives under the app/export folder:
+  - Windows: %AppData%\Exile2.builder\.cache
+  - Linux: $XDG_DATA_HOME/Exile2.builder/.cache or ~/.local/share/Exile2.builder/.cache
+- Node borders, paths, selected paths, and highlight rings scale with zoom.
+- Hover hit-testing uses a spatial grid.
+- Empty canvas/dead-space mouse movement checks only nearby buckets.
+- Filter highlights are recomputed only when a filter/search is active.
+- Expensive canvas shadowBlur effects remain disabled by default.
+- Delirium Anoint-only floating nodes are hidden by default but can be shown with a checkbox.
+- Invisible Class/Ascendancy start roots do not count in the Selected node count.
+- Export .build to PoE2 writes to Documents/My Games/Path of Exile 2/BuildPlanner/ and opens that folder after export.
+- Dropdown changes preserve zoom/pan.
+- 30 FPS default render cap.
+- 1x canvas backing scale by default.
+- 1920x1080 browser app window request.
+- Exile2.builder branding and icon materialization into %AppData%\Exile2.builder.
+- Unnamed/placeholder Ascendancies hidden; named/live-looking Ascendancies remain visible.
+- Live-looking named skills only in the Skill dropdown.
+- Granted-skill tooltip details.
+- Import requires the user to select a file by number; no auto-selection.
+- Compact Ascendancy medallion and hidden visual start nodes.
+- 20% default passive node size.
+- Dark Path of Exile-style brown/gold UI.
+- Plant Damage logic: Plant-specific + generic Damage + generic Physical Damage, not Spell Damage.
+- First-open heartbeat fix.
+
+PoE2 BuildPlanner export target
+-------------------------------
+The button named Export .build to PoE2 writes to:
+Documents/My Games/Path of Exile 2/BuildPlanner/
+
+After a successful export, the folder opens automatically so the user can verify the file is present.
+
+Icon note
+---------
+The app materializes Exile2.builder.ico and Exile2.builder.png into %AppData%\Exile2.builder on launch, and the shortcut helper uses that icon. The raw .exe Explorer icon still requires a Windows PE resource embedding step that is outside this Linux cross-build environment.
+
+Build commands
+--------------
+Windows:
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w -H=windowsgui" -o Exile2.builder_0-5-1_vA2_Portable.exe
+
+Linux:
+GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o Exile2.builder_0-5-1_vA2_Linux
+chmod +x Exile2.builder_0-5-1_vA2_Linux
+
+Validation performed
+--------------------
+- JavaScript syntax check with node --check.
+- go test.
+- go vet.
+- Windows x64 GUI executable build.
+- Linux x64 executable build.
+- File type validation.
+- ZIP content validation.
